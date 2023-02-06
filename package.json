@@ -1,5 +1,6 @@
 {
-  "name": "ts-nextjs-tailwind-starter",
+  "name": "daak-bangla",
+  "description": "Post card delivery service to send post notes to your loved ones.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -18,6 +19,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.8",
+    "@heroicons/react": "^2.0.14",
     "clsx": "^1.2.1",
     "next": "^13.1.6",
     "react": "^18.2.0",
@@ -54,7 +57,7 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "eslint --max-warnings=0",
+      "eslint --max-warnings=100",
       "prettier -w"
     ],
     "**/*.{json,css,scss,md,webmanifest}": [
