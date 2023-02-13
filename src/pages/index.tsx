@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { HeroSection } from '@/components/HeroSection';
 import Layout from '@/components/layout/Layout';
+import {FAQ} from "@/components/FAQ"
 
 /**
  * SVGR Support
@@ -19,6 +20,7 @@ export default function HomePage() {
   return (
     <Layout>
       <HeroSection />
+      <FAQ />
     </Layout>
   );
 }
