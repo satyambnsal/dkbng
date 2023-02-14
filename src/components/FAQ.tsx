@@ -1,5 +1,41 @@
-
-
+const faqs = [
+  {
+    id: 1,
+    question: 'What is Daak Bangla?',
+    answer:
+      'At Daak Bangla, we believe in reviving the cherished tradition of exchanging postcards in a way that embraces the advancements of technology. Our platform offers a warm and convenient way to subscribe to monthly poetry postcards and send heartwarming poems to your loved ones. And in the future, we hope to create a vibrant community of artists where they can showcase their talents and bring their beautiful art to life in the form of NFT stamps and printed postcards. Join us in keeping the tradition of exchanging postcards alive and well!',
+  },
+  {
+    id: 2,
+    question: 'What kind of postcards can I send?',
+    answer:
+      'You can send beautiful handpicked designer poetry postcards to your loved ones.',
+  },
+  {
+    id: 3,
+    question: 'Can I subscribe to monthly poetry postcards?',
+    answer:
+      'Yes, you can subscribe to monthly poetry postcards and receive them regularly.',
+  },
+  {
+    id: 4,
+    question: 'How does this platform use NFTs and blockchain technology?',
+    answer:
+      'This platform uses NFTs to convert art into unique digital stamps, which can be printed on postcards. The use of blockchain technology ensures the authenticity and ownership of these NFTs.',
+  },
+  {
+    id: 5,
+    question: 'Can artists monetize their art on this platform?',
+    answer:
+      'Yes, artists can monetize their art by converting it to NFT stamps and offering it to be printed on postcards. They will receive a commission for each postcard sold with their art on it.',
+  },
+  {
+    id: 6,
+    question: 'Is this platform only for poetry postcards?',
+    answer:
+      'This platform primarily focuses on poetry postcards, but it may expand to offer other types of postcards in the future.',
+  },
+];
 
 export const FAQ = () => {
   return (
@@ -10,88 +46,19 @@ export const FAQ = () => {
         </h2>
         <div className='mt-8'>
           <dl className='divide-y divide-gray-200'>
-            <div className='pt-6 pb-8 md:grid md:grid-cols-12 md:gap-8'>
-              <dt className='text-base font-medium text-gray-900 md:col-span-5'>
-                What's the best thing about Switzerland?
-              </dt>
-              <dd className='mt-2 md:col-span-7 md:mt-0'>
-                <p className='text-base text-gray-500'>
-                  I don't know, but the flag is a big plus. Lorem ipsum dolor
-                  sit amet consectetur adipisicing elit. Quas cupiditate
-                  laboriosam fugiat.
-                </p>
-              </dd>
-            </div>
-
-            <div className='pt-6 pb-8 md:grid md:grid-cols-12 md:gap-8'>
-              <dt className='text-base font-medium text-gray-900 md:col-span-5'>
-                How do you make holy water?
-              </dt>
-              <dd className='mt-2 md:col-span-7 md:mt-0'>
-                <p className='text-base text-gray-500'>
-                  You boil the hell out of it. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Magnam aut tempora vitae odio
-                  inventore fuga aliquam nostrum quod porro. Delectus quia
-                  facere id sequi expedita natus.
-                </p>
-              </dd>
-            </div>
-
-            <div className='pt-6 pb-8 md:grid md:grid-cols-12 md:gap-8'>
-              <dt className='text-base font-medium text-gray-900 md:col-span-5'>
-                What do you call someone with no body and no nose?
-              </dt>
-              <dd className='mt-2 md:col-span-7 md:mt-0'>
-                <p className='text-base text-gray-500'>
-                  Nobody knows. Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Culpa, voluptas ipsa quia excepturi,
-                  quibusdam natus exercitationem sapiente tempore labore
-                  voluptatem.
-                </p>
-              </dd>
-            </div>
-
-            <div className='pt-6 pb-8 md:grid md:grid-cols-12 md:gap-8'>
-              <dt className='text-base font-medium text-gray-900 md:col-span-5'>
-                Why do you never see elephants hiding in trees?
-              </dt>
-              <dd className='mt-2 md:col-span-7 md:mt-0'>
-                <p className='text-base text-gray-500'>
-                  Because they're so good at it. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Quas cupiditate laboriosam
-                  fugiat.
-                </p>
-              </dd>
-            </div>
-
-            <div className='pt-6 pb-8 md:grid md:grid-cols-12 md:gap-8'>
-              <dt className='text-base font-medium text-gray-900 md:col-span-5'>
-                Why can't you hear a pterodactyl go to the bathroom?
-              </dt>
-              <dd className='mt-2 md:col-span-7 md:mt-0'>
-                <p className='text-base text-gray-500'>
-                  Because the pee is silent. Lorem ipsum dolor sit amet,
-                  consectetur adipisicing elit. Ipsam, quas voluptatibus ex
-                  culpa ipsum, aspernatur blanditiis fugiat ullam magnam
-                  suscipit deserunt illum natus facilis atque vero consequatur!
-                  Quisquam, debitis error.
-                </p>
-              </dd>
-            </div>
-
-            <div className='pt-6 pb-8 md:grid md:grid-cols-12 md:gap-8'>
-              <dt className='text-base font-medium text-gray-900 md:col-span-5'>
-                Why did the invisible man turn down the job offer?
-              </dt>
-              <dd className='mt-2 md:col-span-7 md:mt-0'>
-                <p className='text-base text-gray-500'>
-                  He couldn't see himself doing it. Lorem ipsum dolor sit, amet
-                  consectetur adipisicing elit. Eveniet perspiciatis officiis
-                  corrupti tenetur. Temporibus ut voluptatibus, perferendis sed
-                  unde rerum deserunt eius.
-                </p>
-              </dd>
-            </div>
+            {faqs.map(({ question, answer, id }) => (
+              <div
+                className='pt-6 pb-8 md:grid md:grid-cols-12 md:gap-8'
+                key={id}
+              >
+                <dt className='text-base font-medium text-gray-900 md:col-span-5'>
+                  {question}
+                </dt>
+                <dd className='mt-2 md:col-span-7 md:mt-0'>
+                  <p className='text-base text-gray-500'>{answer}</p>
+                </dd>
+              </div>
+            ))}
           </dl>
         </div>
       </div>
