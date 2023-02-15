@@ -1,26 +1,34 @@
-import * as React from 'react';
+import Head from 'next/head';
 
-import { HeroSection } from '@/components/HeroSection';
-import Layout from '@/components/layout/Layout';
-import {FAQ} from "@/components/FAQ"
-
-/**
- * SVGR Support
- * Caveat: No React Props Type.
- *
- * You can override the next-env if the type is important to you
- * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
- */
-
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
+import { FAQ } from '@/components/FAQ';
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { Hero } from '@/components/Hero';
+import { Newsletter } from '@/components/Newsletter';
+import { Schedule } from '@/components/Schedule';
+import { Artists } from '@/components/Artists';
+import { Sponsors } from '@/components/Sponsors';
 
 export default function HomePage() {
   return (
-    <Layout>
-      <HeroSection />
-      <FAQ />
-    </Layout>
+    <>
+      <Head>
+        <title>DaaK Bangla</title>
+        <meta
+          name='description'
+          content='Reviving the cherished tradition of exchanging postcards.'
+        />
+      </Head>
+      <Header />
+      <main>
+        <Hero />
+        <Artists />
+        {/* <Schedule /> */}
+        <Sponsors />
+        <Newsletter />
+        <FAQ />
+      </main>
+      <Footer />
+    </>
   );
 }
