@@ -119,11 +119,11 @@ export function Artists() {
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2
             id="speakers-title"
-            className="font-display text-4xl font-medium tracking-tighter text-blue-600 sm:text-5xl"
+            className="font-display text-4xl font-medium tracking-tighter text-rose-800 sm:text-5xl"
           >
-            Poets & Artists
+            All Poets
           </h2>
-          <p className="mt-4 font-display text-2xl tracking-tight text-blue-900">
+          <p className="mt-4 font-display text-2xl tracking-tight text-rose-900">
           </p>
         </div>
         <Tab.Group

@@ -23,11 +23,11 @@ export function Hero() {
       </div>
       <Container className="relative">
         <div className="mx-auto max-w-4xl lg:max-w-4xl lg:px-6">
-          <h1 className="font-display text-5xl font-bold text-blue-600 sm:text-7xl">
+          <h1 className="font-display text-5xl font-bold text-rose-800 sm:text-7xl">
             <span className="block text-center">Poetry and love,</span>
             <span className='block text-center text-3xl'>hand-delivered to your special someone.</span>
           </h1>
-          <div className="mt-10 space-y-6 font-display text-2xl tracking-wide text-blue-900">
+          <div className="mt-10 space-y-6 font-display text-2xl tracking-wide text-rose-900">
             <p>
               Daak Bangla is reviving the cherished tradition of exchanging postcards in a way that embraces the advancements of technology. Our platform offers a warm and convenient way to subscribe to monthly poetry postcards and send heartwarming poems to your loved ones.
             </p>
@@ -50,6 +50,10 @@ export function Hero() {
               </div>
             ))}
           </dl> */}
+        </div>
+
+        <div className="w-full hidden mt-20 sm:flex justify-center lg:grow lg:basis-0 ">
+          <Button href="#" className="px-10">Send your postcard!</Button>
         </div>
       </Container>
     </div>
