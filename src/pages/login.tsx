@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import { Logo } from '@/components/Logo';
+
 import { getURL } from '@/utils/helpers';
 
 import { Database } from '@/types_db';
@@ -11,7 +12,7 @@ export default function LoginPage() {
   const router = useRouter();
   const user = useUser();
   const supabaseClient = useSupabaseClient<Database>();
-
+  console.log("Next public site url: ", {a: process?.env?.NEXT_PUBLIC_SITE_URL})
   useEffect(() => {
     if (user) {
       router.replace('/dashboard');
