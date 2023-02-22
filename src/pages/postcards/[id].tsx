@@ -8,7 +8,7 @@ import clsx from 'clsx';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import Image from 'next/image';
 
-import { getPostcard } from '@/utils/supabase-client';
+import { getPostcard, getPostcards } from '@/utils/supabase-client';
 
 import { PostCard } from '@/types';
 
@@ -22,6 +22,7 @@ const details = [
   'Pre-washed and pre-shrunk',
   'Machine wash cold with similar colors',
 ];
+
 const policies = [
   {
     name: 'Express delivery',
@@ -36,7 +37,6 @@ const policies = [
 ];
 
 export default function PostcardPage({ postcard }: PostcardPageProps) {
-  console.log('postcard', postcard);
   const allImages = [
     {
       id: 1,
@@ -104,7 +104,6 @@ export default function PostcardPage({ postcard }: PostcardPageProps) {
 
             {/* Image gallery */}
             <div className='mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0'>
-              <h2 className='sr-only'>Images</h2>
               <Tab.Group as='div' className='flex flex-col-reverse'>
                 {/* Image selector */}
                 <div className='mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none'>
@@ -223,6 +222,19 @@ export default function PostcardPage({ postcard }: PostcardPageProps) {
       </div>
     </div>
   );
+}
+
+export async function getStaticPaths() {
+  const postcards = await getPostcards();
+  const paths = postcards.map((postcard) => ({
+    params: {
+      id: postcard.id?.toString(),
+    },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
 }
 
 export async function getStaticProps(

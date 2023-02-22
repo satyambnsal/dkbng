@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { PostCard } from '@/types';
@@ -120,7 +121,9 @@ export const FeaturedPostcards = ({ postcards }: { postcards: PostCard[] }) => {
         className='gapy-y-8 grid w-full justify-center gap-x-4 px-8 sm:grid-cols-2 2xl:grid-cols-3'
       >
         {postcards.map((postcard) => (
-          <Postcard postcard={postcard} key={postcard.id} />
+          <Link href={`/postcards/${postcard.id}`} key={postcard.id}>
+            <Postcard postcard={postcard} />
+          </Link>
         ))}
       </ul>
     </div>
