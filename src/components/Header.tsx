@@ -1,6 +1,7 @@
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 
 import { Button } from '@/components/Button/Button';
+import { LinkButton } from '@/components/Button/LinkButton';
 import { Container } from '@/components/Container';
 import { Logo } from '@/components/Logo';
 
@@ -30,16 +31,16 @@ export function Header() {
             <p>Los Angeles, CA</p>
           </div>
         </div> */}
-        <Button
+        <LinkButton
           href='https://docs.google.com/forms/d/e/1FAIpQLSdHnkh7wKeeKvhjemro_olNk2h0xYqz1MpaGXkV_JTAGg8rLQ/viewform'
-          target='_blank'
+          newTab
         >
           Become a creator
-        </Button>
+        </LinkButton>
         {!user ? (
-          <Button className='ml-4' href='/login'>
+          <LinkButton className='ml-4' href='/login'>
             Login
-          </Button>
+          </LinkButton>
         ) : (
           <Button className='ml-4' onClick={handleLogout}>
             Logout
