@@ -1,15 +1,23 @@
+import { GetStaticPropsResult } from 'next';
 import Head from 'next/head';
 
 import { Artists } from '@/components/Artists';
 import { FAQ } from '@/components/FAQ';
+import { FeaturedPostcards } from '@/components/FeaturedPostcards';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { Newsletter } from '@/components/Newsletter';
-import Products from "@/components/Products";
 import { Sponsors } from '@/components/Sponsors';
 
-export default function HomePage() {
+import { getPostcards } from '@/utils/supabase-client';
+
+import { PostCard } from '@/types';
+
+interface HomePageProps {
+  postcards: PostCard[];
+}
+export default function HomePage({ postcards }: HomePageProps) {
   return (
     <>
       <Head>
@@ -22,7 +30,7 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
-        <Products />
+        <FeaturedPostcards postcards={postcards} />
         <Artists />
         {/* <Schedule /> */}
         <Sponsors />
@@ -32,4 +40,17 @@ export default function HomePage() {
       <Footer />
     </>
   );
+}
+
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<HomePageProps>
+> {
+  const postcards = await getPostcards();
+  console.log('postcards: ', postcards);
+  return {
+    props: {
+      postcards,
+    },
+    revalidate: 60,
+  };
 }

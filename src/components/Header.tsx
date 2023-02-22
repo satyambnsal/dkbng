@@ -1,6 +1,6 @@
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/Button/Button';
 import { Container } from '@/components/Container';
 import { Logo } from '@/components/Logo';
 

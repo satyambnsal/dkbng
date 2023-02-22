@@ -87,31 +87,40 @@ export interface Database {
       }
       postcards: {
         Row: {
-          back_image_url: string | null
+          back_image_url: string
           created_at: string | null
           description: string
           front_image_url: string
           id: number
           is_available: boolean | null
-          price: number | null
+          price: number
+          rank: number
+          rating: number
+          title: string
         }
         Insert: {
-          back_image_url?: string | null
+          back_image_url: string
           created_at?: string | null
           description: string
           front_image_url: string
           id?: number
           is_available?: boolean | null
-          price?: number | null
+          price?: number
+          rank?: number
+          rating?: number
+          title?: string
         }
         Update: {
-          back_image_url?: string | null
+          back_image_url?: string
           created_at?: string | null
           description?: string
           front_image_url?: string
           id?: number
           is_available?: boolean | null
-          price?: number | null
+          price?: number
+          rank?: number
+          rating?: number
+          title?: string
         }
       }
       users: {
