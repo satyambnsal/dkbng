@@ -13,7 +13,7 @@ export const getURL = () => {
 };
 
 export const fetchPincodeDetail = async (
-  pincode: number
+  pincode: string
 ): Promise<{
   city: string;
   state: string;
