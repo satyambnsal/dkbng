@@ -6,6 +6,7 @@ import 'focus-visible';
 
 import '@/styles/globals.css';
 
+import { MyUserContextProvider } from '../hooks/useUser.tsx';
 import { Database } from '../types_db';
 
 function MyApp({
@@ -21,7 +22,9 @@ function MyApp({
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
-      <Component {...pageProps} />
+      <MyUserContextProvider>
+        <Component {...pageProps} />
+      </MyUserContextProvider>
     </SessionContextProvider>
   );
 }

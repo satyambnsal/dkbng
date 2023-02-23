@@ -3,14 +3,20 @@ import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import { Button } from '@/components/Button/Button';
 import { LinkButton } from '@/components/Button/LinkButton';
 import { Container } from '@/components/Container';
+import { LoginModal } from '@/components/LoginModal';
 import { Logo } from '@/components/Logo';
 
 import { Database } from '@/types_db';
+import { useState } from 'react';
 
 export function Header() {
   const user = useUser();
   const supabaseClient = useSupabaseClient<Database>();
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
+  const handleModalClose = () => {
+    setShowLoginModal(false)
+  }
   const handleLogout = async () => {
     await supabaseClient.auth.signOut();
   };
@@ -38,15 +44,19 @@ export function Header() {
           Become a creator
         </LinkButton>
         {!user ? (
-          <LinkButton className='ml-4' href='/login'>
+          <Button className='ml-4' onClick={() => setShowLoginModal(true)}>
             Login
-          </LinkButton>
+          </Button>
         ) : (
           <Button className='ml-4' onClick={handleLogout}>
             Logout
           </Button>
         )}
       </Container>
+      <LoginModal
+        isOpen={showLoginModal}
+        handleClose={handleModalClose}
+      />
     </header>
   );
 }

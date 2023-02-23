@@ -24,6 +24,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.8",
     "@heroicons/react": "^2.0.14",
+    "@hookform/resolvers": "^2.9.11",
     "@supabase/auth-helpers-nextjs": "^0.4.1",
     "@supabase/auth-helpers-react": "^0.3.0",
     "@supabase/auth-ui-react": "^0.2.6",
@@ -39,8 +40,10 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.2",
     "react-icons": "^4.7.1",
+    "react-use": "^17.4.0",
     "swr": "1.2.0",
-    "tailwind-merge": "^1.8.1"
+    "tailwind-merge": "^1.8.1",
+    "yup": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

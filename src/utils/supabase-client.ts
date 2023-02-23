@@ -1,8 +1,14 @@
-import {} from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 
 import { supabaseAdmin } from './supabase';
 import { PostCard } from '../types';
-// export const supabase = createBrowserSupabaseClient<Database>();
+
+import { Database } from '@/types_db';
+
+export const supabaseClient = createClient<Database>(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+);
 
 export const getPostcards = async (): Promise<PostCard[]> => {
   const { data, error } = await supabaseAdmin.from('postcards').select('*');

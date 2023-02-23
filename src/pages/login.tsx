@@ -12,7 +12,6 @@ export default function LoginPage() {
   const router = useRouter();
   const user = useUser();
   const supabaseClient = useSupabaseClient<Database>();
-  console.log("Next public site url: ", {a: process?.env?.NEXT_PUBLIC_SITE_URL})
   useEffect(() => {
     if (user) {
       router.replace('/dashboard');

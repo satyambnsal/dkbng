@@ -17,8 +17,8 @@ export function Button({
     'inline-flex justify-center rounded-2xl bg-rose-800 text-base font-semibold text-white hover:bg-rose-700 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:text-white/70',
     className,
     {
-      'px-4 py-2': primary,
-      'px-3 py-2': !primary,
+      'px-4 py-4': primary,
+      'px-4 py-4': !primary,
     }
   );
 
