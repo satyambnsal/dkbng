@@ -1,7 +1,6 @@
 import { GetStaticPropsResult } from 'next';
 import Head from 'next/head';
 
-import { Artists } from '@/components/Artists';
 import { FAQ } from '@/components/FAQ';
 import { FeaturedPostcards } from '@/components/FeaturedPostcards';
 import { Footer } from '@/components/Footer';
@@ -31,7 +30,7 @@ export default function HomePage({ postcards }: HomePageProps) {
       <main>
         <Hero />
         <FeaturedPostcards postcards={postcards} />
-        <Artists />
+        {/* <Artists /> */}
         {/* <Schedule /> */}
         <Sponsors />
         <Newsletter />

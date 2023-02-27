@@ -7,6 +7,7 @@ import {
 import clsx from 'clsx';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { getPostcard, getPostcards } from '@/utils/supabase-client';
 
@@ -157,14 +158,13 @@ export default function PostcardPage({ postcard }: PostcardPageProps) {
             </div>
 
             <div className='mt-8 lg:col-span-5'>
-              <form>
-                <button
-                  type='submit'
-                  className='mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                >
-                  Buy now
-                </button>
-              </form>
+              <Link
+                type='submit'
+                className='mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                href={`/postcards/${postcard.id}/checkout`}
+              >
+                Buy now
+              </Link>
 
               {/* Product details */}
               <div className='mt-10'>
@@ -242,7 +242,7 @@ export async function getStaticProps(
 ): Promise<GetStaticPropsResult<PostcardPageProps>> {
   const { params: { id } = {} } = context;
   const postcard = await getPostcard(id as any as number);
-  console.log('postcard: ', postcard);
+  // console.log('postcard: ', postcard);
   return {
     props: {
       postcard,
