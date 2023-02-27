@@ -17,3 +17,16 @@ export type UserDetails = {
   email: string;
   avatar_url?: string;
 };
+
+export type Address = {
+  name: string;
+  contact_no: string;
+  pincode: string;
+  address: string;
+  locality?: string;
+  city: string;
+  state: string;
+  landmark?: string;
+  alt_contact_no?: string;
+  user_id: string;
+};

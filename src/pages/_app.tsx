@@ -6,7 +6,7 @@ import 'focus-visible';
 
 import '@/styles/globals.css';
 
-import { MyUserContextProvider } from '../hooks/useUser';
+import { MyUserContextProvider } from '../hooks/useLocalUser';
 import { Database } from '../types_db';
 
 function MyApp({

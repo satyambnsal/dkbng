@@ -27,12 +27,23 @@ type UserContextType = {
   user: User | GoogleUser | null;
   isLoading: boolean;
   userDetails: UserDetails | null;
+  isShowLoginModal: boolean;
+  handleLoginModal: (value: boolean) => void;
 };
 
 export interface Props {
   [propName: string]: any;
 }
-export const UserContext = createContext<UserContextType | null>(null);
+
+export const UserContext = createContext<UserContextType>({
+  accessToken: null,
+  user: null,
+  isLoading: false,
+  userDetails: null,
+  isShowLoginModal: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  handleLoginModal: (value) => {},
+});
 
 export const MyUserContextProvider = (props: Props) => {
   const {
@@ -42,12 +53,16 @@ export const MyUserContextProvider = (props: Props) => {
   } = useSessionContext();
 
   const user = useSupaUser();
-  console.log('supabase user: ', user);
+  // console.log('supabase user: ', user);
 
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsloadingData] = useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
+  const [isShowLoginModal, setIsShowLoginModal] = useState(false);
 
+  const handleLoginModal = (value: boolean) => {
+    setIsShowLoginModal(value);
+  };
   const getUserDetails = useCallback(
     () => supabase.from('users').select('*').eq('email', user?.email),
     [supabase, user]
@@ -63,7 +78,7 @@ export const MyUserContextProvider = (props: Props) => {
       try {
         setIsloadingData(true);
         const userDetails = await getUserDetails();
-        // console.log('user details', userDetails);
+        console.log('user details 81', userDetails);
         if (
           user &&
           Array.isArray(userDetails.data) &&
@@ -84,7 +99,7 @@ export const MyUserContextProvider = (props: Props) => {
         } else if (
           user &&
           Array.isArray(userDetails.data) &&
-          userDetails.data?.length > 1
+          userDetails.data?.length > 0
         ) {
           setUserDetails(userDetails.data[0]);
         }
@@ -105,14 +120,28 @@ export const MyUserContextProvider = (props: Props) => {
     user,
     userDetails,
     isLoading: isLoadingUser || isLoadingData,
+    isShowLoginModal,
+    handleLoginModal,
   };
   return <UserContext.Provider value={value} {...props} />;
 };
 
-export const useUser = () => {
-  const context = useContext(UserContext);
-  if (context === undefined) {
-    throw new Error(`useUser must be used within a MyUserContextProvider.`);
-  }
-  return context;
+export const useLocalUser = () => {
+  const {
+    user,
+    userDetails,
+    isLoading,
+    accessToken,
+    isShowLoginModal,
+    handleLoginModal,
+  } = useContext(UserContext);
+
+  return {
+    user,
+    userDetails,
+    isLoading,
+    accessToken,
+    isShowLoginModal,
+    handleLoginModal,
+  };
 };

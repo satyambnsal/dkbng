@@ -1,4 +1,7 @@
 import { PINCODE_API_BASE_URL } from '@/constant/env';
+import { supabaseClient } from '@/utils/supabase-client';
+
+import { Address } from '@/types';
 
 export const getURL = () => {
   let url =
@@ -44,4 +47,9 @@ export const fetchPincodeDetail = async (
     state,
     localities,
   };
+};
+
+export const addNewAddress = async (payload: Address) => {
+  const { error, data } = await supabaseClient.from('address').insert(payload);
+  return { error, data };
 };

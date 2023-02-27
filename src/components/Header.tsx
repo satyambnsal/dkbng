@@ -1,4 +1,7 @@
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+import Link from 'next/link';
+
+import { useLocalUser } from '@/hooks/useLocalUser';
 
 import { Button } from '@/components/Button/Button';
 import { LinkButton } from '@/components/Button/LinkButton';
@@ -7,16 +10,15 @@ import { LoginModal } from '@/components/LoginModal';
 import { Logo } from '@/components/Logo';
 
 import { Database } from '@/types_db';
-import { useState } from 'react';
 
 export function Header() {
   const user = useUser();
   const supabaseClient = useSupabaseClient<Database>();
-  const [showLoginModal, setShowLoginModal] = useState(false)
+  const { isShowLoginModal, handleLoginModal } = useLocalUser();
 
   const handleModalClose = () => {
-    setShowLoginModal(false)
-  }
+    handleLoginModal(false);
+  };
   const handleLogout = async () => {
     await supabaseClient.auth.signOut();
   };
@@ -25,7 +27,9 @@ export function Header() {
     <header className='relative z-50 pb-11 lg:pt-11'>
       <Container className='flex flex-wrap items-center justify-center sm:justify-between lg:flex-nowrap'>
         <div className='mt-10 lg:mt-0 lg:grow lg:basis-0'>
-          <Logo className='h-12 w-auto text-slate-900' />
+          <Link href='/'>
+            <Logo className='h-12 w-auto text-slate-900' />
+          </Link>
         </div>
         {/* <div className="order-first -mx-4 flex flex-auto basis-full overflow-x-auto whitespace-nowrap border-b border-blue-600/10 py-4 font-mono text-sm text-blue-600 sm:-mx-6 lg:order-none lg:mx-0 lg:basis-auto lg:border-0 lg:py-0">
           <div className="mx-auto flex items-center gap-4 px-4">
@@ -44,7 +48,7 @@ export function Header() {
           Become a creator
         </LinkButton>
         {!user ? (
-          <Button className='ml-4' onClick={() => setShowLoginModal(true)}>
+          <Button className='ml-4' onClick={() => handleLoginModal(true)}>
             Login
           </Button>
         ) : (
@@ -53,10 +57,7 @@ export function Header() {
           </Button>
         )}
       </Container>
-      <LoginModal
-        isOpen={showLoginModal}
-        handleClose={handleModalClose}
-      />
+      <LoginModal isOpen={isShowLoginModal} handleClose={handleModalClose} />
     </header>
   );
 }

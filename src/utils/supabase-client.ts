@@ -11,7 +11,8 @@ export const supabaseClient = createClient<Database>(
 );
 
 export const getPostcards = async (): Promise<PostCard[]> => {
-  const { data, error } = await supabaseAdmin.from('postcards').select('*');
+  const supaAdmin = supabaseAdmin();
+  const { data, error } = await supaAdmin.from('postcards').select('*');
   if (error) {
     console.log(error.message);
   }
@@ -19,7 +20,8 @@ export const getPostcards = async (): Promise<PostCard[]> => {
 };
 
 export const getPostcard = async (postcardId: number): Promise<PostCard> => {
-  const { data, error } = await supabaseAdmin
+  const supaAdmin = supabaseAdmin();
+  const { data, error } = await supaAdmin
     .from('postcards')
     .select('*')
     .eq('id', postcardId);

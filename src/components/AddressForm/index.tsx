@@ -1,13 +1,18 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDebounce } from 'react-use';
 import * as yup from 'yup';
+
+import { Spinner } from '@/components/Spinner';
 
 import {
   PHONE_NO_VALIDATION_REGEX,
   PINCODE_VALIDATION_REGEX,
 } from '@/constant/env';
-import { fetchPincodeDetail } from '@/utils/helpers';
+import { addNewAddress, fetchPincodeDetail } from '@/utils/helpers';
+
+import { useLocalUser } from '../../hooks/useLocalUser';
 
 const schema = yup
   .object({
@@ -36,18 +41,6 @@ const schema = yup
   })
   .required();
 
-// type AddressFormInputs = {
-//   name: string;
-//   contact_no: string;
-//   pincode: number;
-//   locality: string;
-//   address: string;
-//   city: string;
-//   state: string;
-//   landmark: string;
-//   alt_contact_no: string;
-// };
-
 type AddressFormInputs = yup.InferType<typeof schema>;
 
 export const AddressForm = () => {
@@ -60,8 +53,18 @@ export const AddressForm = () => {
   } = useForm<AddressFormInputs>({
     resolver: yupResolver(schema),
   });
-  const onSubmit: SubmitHandler<AddressFormInputs> = (data) => {
-    console.log(data);
+  const { userDetails, handleLoginModal } = useLocalUser();
+  const [isLoading, setIsLoading] = useState(false);
+  const onSubmit: SubmitHandler<AddressFormInputs> = async (data) => {
+    setIsLoading(true);
+    if (!userDetails?.id) {
+      return handleLoginModal(true);
+    }
+    const user_id: string = userDetails.id;
+    const payload = { user_id, ...data };
+    const { data: result, error } = await addNewAddress(payload);
+    // console.log({ result, error });
+    setIsLoading(false);
   };
 
   const pincode = watch('pincode');
@@ -302,7 +305,12 @@ export const AddressForm = () => {
         </div>
       </div>
       <div>
-        <button type='submit'>Add Address</button>
+        <button
+          type='submit'
+          className='bg-rose-400 px-4 py-2 font-medium text-white'
+        >
+          {isLoading ? <Spinner /> : ' Add Address'}
+        </button>
       </div>
     </form>
   );

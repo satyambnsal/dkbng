@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useRouter } from 'next/router';
 import { Fragment, useState } from 'react';
 
 import { getURL } from '@/utils/helpers';
@@ -13,12 +14,13 @@ type LoginModalProps = {
 
 export const LoginModal = ({ isOpen, handleClose }: LoginModalProps) => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const supabaseClient = useSupabaseClient<Database>();
   const signInWithGoogle = async () => {
     const { data, error } = await supabaseClient.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: getURL(),
+        redirectTo: `${getURL()}${router.pathname}`,
       },
     });
   };
