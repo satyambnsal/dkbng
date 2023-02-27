@@ -6,5 +6,6 @@ export const showLogger = isLocal
   : process.env.NEXT_PUBLIC_SHOW_LOGGER === 'true' ?? false;
 
 export const PINCODE_API_BASE_URL = 'https://api.postalpincode.in/pincode/';
+// eslint-disable-next-line no-useless-escape
 export const PHONE_NO_VALIDATION_REGEX = /^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$/;
 export const PINCODE_VALIDATION_REGEX = /^[1-9][0-9]{5}$/;

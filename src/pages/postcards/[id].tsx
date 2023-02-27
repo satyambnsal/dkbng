@@ -41,13 +41,18 @@ export default function PostcardPage({ postcard }: PostcardPageProps) {
   const allImages = [
     {
       id: 1,
-      src: postcard.front_image_url,
+      src: postcard?.front_image_url || '',
     },
     {
       id: 2,
-      src: postcard.back_image_url,
+      src: postcard?.back_image_url || '',
     },
   ];
+
+  //TODO: fix this bug
+  if (!postcard?.id) {
+    return <div>No Product available</div>;
+  }
   return (
     <div className='bg-white'>
       <div className='pt-6 pb-16 sm:pb-24'>
@@ -56,10 +61,10 @@ export default function PostcardPage({ postcard }: PostcardPageProps) {
             <div className='lg:col-span-5 lg:col-start-8'>
               <div className='flex justify-between'>
                 <h1 className='text-xl font-medium text-gray-900'>
-                  {postcard.title}
+                  {postcard?.title}
                 </h1>
                 <p className='text-xl font-medium text-gray-900'>
-                  {postcard.price}
+                  {postcard?.price}
                 </p>
               </div>
               {/* Reviews */}
@@ -67,7 +72,7 @@ export default function PostcardPage({ postcard }: PostcardPageProps) {
                 <h2 className='sr-only'>Reviews</h2>
                 <div className='flex items-center'>
                   <p className='text-sm text-gray-700'>
-                    {postcard.rating}
+                    {postcard?.rating}
                     <span className='sr-only'> out of 5 stars</span>
                   </p>
                   <div className='ml-1 flex items-center'>
@@ -242,10 +247,12 @@ export async function getStaticProps(
 ): Promise<GetStaticPropsResult<PostcardPageProps>> {
   const { params: { id } = {} } = context;
   const postcard = await getPostcard(id as any as number);
+  // console.log('static props postcard');
+  // console.log({ id: id, postcard });
   // console.log('postcard: ', postcard);
   return {
     props: {
-      postcard,
+      postcard: postcard,
     },
     revalidate: 60,
   };
