@@ -73,7 +73,7 @@ export default function CheckoutPage() {
                         className={({ checked, active }) =>
                           clsx(
                             checked ? 'border-transparent' : 'border-gray-300',
-                            active ? 'ring-2 ring-indigo-500' : '',
+                            active ? 'ring-2 ring-rose-800' : '',
                             'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                           )
                         }
@@ -104,7 +104,7 @@ export default function CheckoutPage() {
                             </span>
                             {checked ? (
                               <CheckCircleIcon
-                                className='h-5 w-5 text-indigo-600'
+                                className='h-5 w-5 text-rose-900'
                                 aria-hidden='true'
                               />
                             ) : null}
@@ -112,7 +112,7 @@ export default function CheckoutPage() {
                               className={clsx(
                                 active ? 'border' : 'border-2',
                                 checked
-                                  ? 'border-indigo-500'
+                                  ? 'border-rose-800'
                                   : 'border-transparent',
                                 'pointer-events-none absolute -inset-px rounded-lg'
                               )}
@@ -193,7 +193,7 @@ export default function CheckoutPage() {
                             <select
                               id='quantity'
                               name='quantity'
-                              className='rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
+                              className='rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-rose-800 focus:outline-none focus:ring-1 focus:ring-rose-800 sm:text-sm'
                             >
                               <option value={1}>1</option>
                               <option value={2}>2</option>
@@ -236,7 +236,7 @@ export default function CheckoutPage() {
                 <div className='border-t border-gray-200 py-6 px-4 sm:px-6'>
                   <button
                     type='submit'
-                    className='w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50'
+                    className='w-full rounded-md border border-transparent bg-rose-900 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-rose-900 focus:outline-none focus:ring-2 focus:ring-rose-800 focus:ring-offset-2 focus:ring-offset-gray-50'
                   >
                     Confirm order
                   </button>

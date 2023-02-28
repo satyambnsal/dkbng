@@ -106,7 +106,7 @@ export default function PostcardPage({ postcard }: PostcardPageProps) {
                     <div className='ml-4 flex'>
                       <a
                         href='#'
-                        className='text-sm font-medium text-indigo-600 hover:text-indigo-500'
+                        className='text-sm font-medium text-rose-900 hover:text-rose-800'
                       >
                         See all 10 reviews
                       </a>
@@ -140,7 +140,7 @@ export default function PostcardPage({ postcard }: PostcardPageProps) {
                               <span
                                 className={clsx(
                                   selected
-                                    ? 'ring-indigo-500'
+                                    ? 'ring-rose-800'
                                     : 'ring-transparent',
                                   'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2'
                                 )}

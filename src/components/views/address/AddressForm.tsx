@@ -109,7 +109,7 @@ export const AddressForm = () => {
           <input
             type='text'
             autoComplete='name'
-            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('name')}
           />
         </div>
@@ -130,7 +130,7 @@ export const AddressForm = () => {
           <input
             type='text'
             autoComplete='contact-number'
-            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('contact_no', {
               pattern: PHONE_NO_VALIDATION_REGEX,
               required: true,
@@ -154,7 +154,7 @@ export const AddressForm = () => {
         <div className='mt-1'>
           <input
             type='text'
-            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('pincode')}
           />
         </div>
@@ -176,7 +176,7 @@ export const AddressForm = () => {
           <input
             type='text'
             autoComplete='street-address'
-            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('locality')}
           />
         </div>
@@ -192,7 +192,7 @@ export const AddressForm = () => {
         <div className='mt-1'>
           <textarea
             rows={2}
-            className='block w-full resize-none overflow-hidden rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full resize-none overflow-hidden rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('address', { required: true })}
             placeholder='Area and street'
           />
@@ -215,7 +215,7 @@ export const AddressForm = () => {
           <input
             type='text'
             autoComplete='city'
-            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('city', { required: true })}
           />
           {errors.city && (
@@ -236,7 +236,7 @@ export const AddressForm = () => {
         <div className='mt-1'>
           <select
             autoComplete='state'
-            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('state')}
           >
             <option value='Andhra Pradesh'>Andhra Pradesh</option>
@@ -294,7 +294,7 @@ export const AddressForm = () => {
           <input
             type='text'
             autoComplete='landmark'
-            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('landmark')}
           />
         </div>
@@ -310,7 +310,7 @@ export const AddressForm = () => {
           <input
             type='text'
             autoComplete='alternate-contact-no'
-            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-800 focus:ring-rose-800 sm:text-sm'
             {...register('alt_contact_no', {
               pattern: PHONE_NO_VALIDATION_REGEX,
             })}

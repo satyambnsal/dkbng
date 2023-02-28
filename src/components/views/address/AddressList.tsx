@@ -29,7 +29,7 @@ export const AddressList = ({
               className={({ checked, active }) =>
                 clsx(
                   checked ? 'border-transparent' : 'border-gray-300',
-                  active ? 'ring-2 ring-indigo-500' : '',
+                  active ? 'ring-2 ring-rose-800' : '',
                   'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                 )
               }
@@ -80,14 +80,14 @@ export const AddressList = ({
                   </span>
                   {checked ? (
                     <CheckCircleIcon
-                      className='h-5 w-5 text-indigo-600'
+                      className='h-5 w-5 text-rose-900'
                       aria-hidden='true'
                     />
                   ) : null}
                   <span
                     className={clsx(
                       active ? 'border' : 'border-2',
-                      checked ? 'border-indigo-500' : 'border-transparent',
+                      checked ? 'border-rose-800' : 'border-transparent',
                       'pointer-events-none absolute -inset-px rounded-lg'
                     )}
                     aria-hidden='true'
