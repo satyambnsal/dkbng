@@ -10,7 +10,7 @@ import {
   PHONE_NO_VALIDATION_REGEX,
   PINCODE_VALIDATION_REGEX,
 } from '@/constant/env';
-import { addNewAddress, fetchPincodeDetail } from '@/utils/helpers';
+import { fetchPincodeDetail } from '@/utils/helpers';
 
 import { useLocalUser } from '../../hooks/useLocalUser';
 
@@ -57,13 +57,13 @@ export const AddressForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit: SubmitHandler<AddressFormInputs> = async (data) => {
     setIsLoading(true);
-    if (!userDetails?.id) {
-      return handleLoginModal(true);
-    }
-    const user_id: string = userDetails.id;
-    const payload = { user_id, ...data };
-    const { data: result, error } = await addNewAddress(payload);
-    // console.log({ result, error });
+    // if (!userDetails?.id) {
+    return handleLoginModal(true);
+    // }
+    // const user_id: string = userDetails.id;
+    // const payload = { user_id, ...data };
+    // const { data: result, error } = await addNewAddress(payload);
+    // // console.log({ result, error });
     setIsLoading(false);
   };
 

@@ -2,6 +2,7 @@ import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { Session, SessionContextProvider } from '@supabase/auth-helpers-react';
 import { AppProps } from 'next/app';
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import 'focus-visible';
 
 import '@/styles/globals.css';
@@ -25,6 +26,7 @@ function MyApp({
       <MyUserContextProvider>
         <Component {...pageProps} />
       </MyUserContextProvider>
+      <Toaster />
     </SessionContextProvider>
   );
 }
