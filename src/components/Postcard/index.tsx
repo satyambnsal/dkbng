@@ -40,11 +40,9 @@ export const Postcard = ({ postcard }: { postcard: PostCard }) => {
           </svg>
         </button>
       </div>
-      <div className='px-4'>
-        <p className='mt-2 h-7 overflow-hidden text-ellipsis font-medium text-slate-900'>
-          {postcard.description}
-        </p>
-        <p className='text-xl text-gray-900'>{postcard.price}</p>
+      <div className='flex items-center justify-between p-4 font-medium text-gray-600'>
+        <p className='overflow-hidden text-ellipsis'>{postcard.title}</p>
+        <p className=''>&#8377;{postcard.price}</p>
       </div>
     </li>
   );

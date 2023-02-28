@@ -11,6 +11,8 @@ import {
   useState,
 } from 'react';
 
+import { createNewUser, fetchUserByEmail } from '@/utils/helpers';
+
 import { UserDetails } from '@/types';
 
 type GoogleUser = {
@@ -29,6 +31,7 @@ type UserContextType = {
   userDetails: UserDetails | null;
   isShowLoginModal: boolean;
   handleLoginModal: (value: boolean) => void;
+  updateUserDetails: (value: UserDetails) => void;
 };
 
 export interface Props {
@@ -42,15 +45,13 @@ export const UserContext = createContext<UserContextType>({
   userDetails: null,
   isShowLoginModal: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  handleLoginModal: (value) => {},
+  handleLoginModal: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  updateUserDetails: () => {},
 });
 
 export const MyUserContextProvider = (props: Props) => {
-  const {
-    session,
-    isLoading: isLoadingUser,
-    supabaseClient: supabase,
-  } = useSessionContext();
+  const { session, isLoading: isLoadingUser } = useSessionContext();
 
   const user = useSupaUser();
   // console.log('supabase user: ', user);
@@ -63,45 +64,27 @@ export const MyUserContextProvider = (props: Props) => {
   const handleLoginModal = (value: boolean) => {
     setIsShowLoginModal(value);
   };
-  const getUserDetails = useCallback(
-    () => supabase.from('users').select('*').eq('email', user?.email),
-    [supabase, user]
-  );
-  const addUserDetails = useCallback(
-    ({ full_name, email, avatar_url, id }: UserDetails) =>
-      supabase.from('users').insert({ full_name, email, avatar_url, id }),
-    [supabase]
-  );
 
   useEffect(() => {
     async function handleUserDetails() {
       try {
         setIsloadingData(true);
-        const userDetails = await getUserDetails();
-        console.log('user details 81', userDetails);
-        if (
-          user &&
-          Array.isArray(userDetails.data) &&
-          userDetails.data.length === 0
-        ) {
+        const userDetails = await fetchUserByEmail(user?.email || '');
+        if (user && !userDetails) {
           const {
             email = '',
             user_metadata: { full_name = '', avatar_url = '' } = {},
             id,
           } = user;
-          await addUserDetails({
+          await createNewUser({
             full_name,
             email,
             avatar_url,
             id,
-          } as UserDetails);
-          setUserDetails({ full_name, email, avatar_url, id });
-        } else if (
-          user &&
-          Array.isArray(userDetails.data) &&
-          userDetails.data?.length > 0
-        ) {
-          setUserDetails(userDetails.data[0]);
+          });
+          setUserDetails({ full_name, email, avatar_url, id, addresses: [] });
+        } else if (user && userDetails) {
+          setUserDetails(userDetails);
         }
       } catch (error: any) {
         console.error('user details error: ', error.message);
@@ -110,10 +93,14 @@ export const MyUserContextProvider = (props: Props) => {
       }
     }
 
-    if (user) {
+    if (user && user.email) {
       handleUserDetails();
     }
   }, [user]);
+
+  const updateUserDetails = useCallback((data: UserDetails) => {
+    setUserDetails(data);
+  }, []);
 
   const value = {
     accessToken,
@@ -122,6 +109,7 @@ export const MyUserContextProvider = (props: Props) => {
     isLoading: isLoadingUser || isLoadingData,
     isShowLoginModal,
     handleLoginModal,
+    updateUserDetails,
   };
   return <UserContext.Provider value={value} {...props} />;
 };
@@ -134,6 +122,7 @@ export const useLocalUser = () => {
     accessToken,
     isShowLoginModal,
     handleLoginModal,
+    updateUserDetails,
   } = useContext(UserContext);
 
   return {
@@ -143,5 +132,6 @@ export const useLocalUser = () => {
     accessToken,
     isShowLoginModal,
     handleLoginModal,
+    updateUserDetails,
   };
 };

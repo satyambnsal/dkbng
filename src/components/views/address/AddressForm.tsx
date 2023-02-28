@@ -10,9 +10,15 @@ import {
   PHONE_NO_VALIDATION_REGEX,
   PINCODE_VALIDATION_REGEX,
 } from '@/constant/env';
-import { fetchPincodeDetail } from '@/utils/helpers';
+import {
+  addNewAddress,
+  fetchAddresses,
+  fetchPincodeDetail,
+} from '@/utils/helpers';
 
-import { useLocalUser } from '../../hooks/useLocalUser';
+import { useLocalUser } from '../../../hooks/useLocalUser';
+
+import { Address } from '@/types';
 
 const schema = yup
   .object({
@@ -53,17 +59,24 @@ export const AddressForm = () => {
   } = useForm<AddressFormInputs>({
     resolver: yupResolver(schema),
   });
-  const { userDetails, handleLoginModal } = useLocalUser();
+  const { userDetails, handleLoginModal, updateUserDetails } = useLocalUser();
   const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit: SubmitHandler<AddressFormInputs> = async (data) => {
     setIsLoading(true);
-    // if (!userDetails?.id) {
-    return handleLoginModal(true);
-    // }
-    // const user_id: string = userDetails.id;
-    // const payload = { user_id, ...data };
-    // const { data: result, error } = await addNewAddress(payload);
-    // // console.log({ result, error });
+    if (!userDetails?.id) {
+      return handleLoginModal(true);
+    }
+    const user_id: string = userDetails.id;
+    const payload = { user_id, ...data };
+    const { data: result, error } = await addNewAddress(payload);
+    console.log('add new address result: ', { result, error });
+    if (!error) {
+      const addresses: Address[] = await fetchAddresses(user_id);
+      if (addresses.length > userDetails.addresses.length) {
+        updateUserDetails({ ...userDetails, addresses });
+      }
+    }
     setIsLoading(false);
   };
 
@@ -77,7 +90,7 @@ export const AddressForm = () => {
         setValue('locality', localities[0]);
       });
     },
-    2000,
+    1000,
     [pincode]
   );
   return (
@@ -304,10 +317,10 @@ export const AddressForm = () => {
           />
         </div>
       </div>
-      <div>
+      <div className='sm:col-span-2'>
         <button
           type='submit'
-          className='bg-rose-400 px-4 py-2 font-medium text-white'
+          className='w-full bg-gray-400 px-4 py-2 font-medium text-white'
         >
           {isLoading ? <Spinner /> : ' Add Address'}
         </button>

@@ -16,9 +16,10 @@ export type UserDetails = {
   full_name: string;
   email: string;
   avatar_url?: string;
+  addresses: Address[];
 };
 
-export type Address = {
+export type AddressInput = {
   name: string;
   contact_no: string;
   pincode: string;
@@ -29,4 +30,7 @@ export type Address = {
   landmark?: string;
   alt_contact_no?: string;
   user_id: string;
+};
+export type Address = AddressInput & {
+  id: number;
 };

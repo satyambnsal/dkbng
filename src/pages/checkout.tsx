@@ -4,9 +4,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { AddressForm } from '@/components/AddressForm';
 import Layout from '@/components/layout/Layout';
-
+import { AddressForm } from '@/components/views/address/AddressForm';
 
 const products = [
   {

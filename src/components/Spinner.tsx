@@ -8,7 +8,7 @@ export const Spinner = ({ className }: SpinnerProps) => {
   return (
     <div
       className={clsx(
-        'h-12 w-12 animate-spin rounded-full border-2 border-solid border-blue-500 border-t-transparent',
+        'border-white-500 h-6 w-6 animate-spin rounded-full border-2 border-solid border-t-transparent',
         className
       )}
     ></div>

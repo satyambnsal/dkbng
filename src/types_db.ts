@@ -9,48 +9,54 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      Address: {
+      address: {
         Row: {
           address: string
-          city: string | null
+          alt_contact_no: string | null
+          city: string
           contact_email: string | null
-          contact_no: string | null
-          Country: string | null
+          contact_no: string
           created_at: string | null
           id: number
-          Landmark: string | null
-          person_name: string | null
-          postal_code: number | null
-          state: string | null
+          landmark: string | null
+          locality: string | null
+          name: string
+          pincode: string
+          state: string
           title: string | null
+          user_id: string | null
         }
         Insert: {
           address: string
-          city?: string | null
+          alt_contact_no?: string | null
+          city: string
           contact_email?: string | null
-          contact_no?: string | null
-          Country?: string | null
+          contact_no: string
           created_at?: string | null
           id?: number
-          Landmark?: string | null
-          person_name?: string | null
-          postal_code?: number | null
-          state?: string | null
+          landmark?: string | null
+          locality?: string | null
+          name: string
+          pincode: string
+          state: string
           title?: string | null
+          user_id?: string | null
         }
         Update: {
           address?: string
-          city?: string | null
+          alt_contact_no?: string | null
+          city?: string
           contact_email?: string | null
-          contact_no?: string | null
-          Country?: string | null
+          contact_no?: string
           created_at?: string | null
           id?: number
-          Landmark?: string | null
-          person_name?: string | null
-          postal_code?: number | null
-          state?: string | null
+          landmark?: string | null
+          locality?: string | null
+          name?: string
+          pincode?: string
+          state?: string
           title?: string | null
+          user_id?: string | null
         }
       }
       orders: {
@@ -62,7 +68,7 @@ export interface Database {
           postcard_id: number | null
           status: string | null
           transaction_id: string | null
-          user_id: number | null
+          user_id: string | null
         }
         Insert: {
           address_id?: number | null
@@ -72,7 +78,7 @@ export interface Database {
           postcard_id?: number | null
           status?: string | null
           transaction_id?: string | null
-          user_id?: number | null
+          user_id?: string | null
         }
         Update: {
           address_id?: number | null
@@ -82,7 +88,7 @@ export interface Database {
           postcard_id?: number | null
           status?: string | null
           transaction_id?: string | null
-          user_id?: number | null
+          user_id?: string | null
         }
       }
       postcards: {
@@ -125,28 +131,25 @@ export interface Database {
       }
       users: {
         Row: {
-          address: number | null
           avatar_url: string | null
           created_at: string | null
           email: string | null
           full_name: string
-          id: number
+          id: string
         }
         Insert: {
-          address?: number | null
           avatar_url?: string | null
           created_at?: string | null
           email?: string | null
           full_name?: string
-          id?: number
+          id?: string
         }
         Update: {
-          address?: number | null
           avatar_url?: string | null
           created_at?: string | null
           email?: string | null
           full_name?: string
-          id?: number
+          id?: string
         }
       }
     }
