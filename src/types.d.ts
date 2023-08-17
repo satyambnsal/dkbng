@@ -17,6 +17,7 @@ export type UserDetails = {
   email: string;
   avatar_url?: string;
   addresses: Address[];
+  role: 'BASIC' | 'ADMIN';
 };
 
 export type AddressInput = {

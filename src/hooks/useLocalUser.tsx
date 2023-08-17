@@ -82,7 +82,14 @@ export const MyUserContextProvider = (props: Props) => {
             avatar_url,
             id,
           });
-          setUserDetails({ full_name, email, avatar_url, id, addresses: [] });
+          setUserDetails({
+            full_name,
+            email,
+            avatar_url,
+            id,
+            addresses: [],
+            role: 'BASIC',
+          });
         } else if (user && userDetails) {
           setUserDetails(userDetails);
         }
@@ -133,5 +140,6 @@ export const useLocalUser = () => {
     isShowLoginModal,
     handleLoginModal,
     updateUserDetails,
+    isAdmin: userDetails?.role === 'ADMIN',
   };
 };
