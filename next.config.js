@@ -14,7 +14,7 @@ const nextConfig = {
   // Uncoment to add domain whitelist
   images: {
     domains: [
-      'res.cloudinary.com', "images.unsplash.com", "plus.unsplash.com", "daakbangla.blob.core.windows.net", "tailwindui.com"
+      'res.cloudinary.com', "images.unsplash.com", "plus.unsplash.com", "daakbngla.blob.core.windows.net", "daakbangla.blob.core.windows.net", "tailwindui.com"
     ],
   },
 };
