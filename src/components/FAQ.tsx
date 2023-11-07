@@ -7,7 +7,7 @@ const faqs = [
   },
   {
     id: 2,
-    question: 'What kind of postcards can I send?',
+    question: 'What kind of postcards can I send too?',
     answer:
       'You can send beautiful handpicked designer poetry postcards to your loved ones.',
   },
