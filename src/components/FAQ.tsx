@@ -51,11 +51,11 @@ export const FAQ = () => {
                 className='pt-6 pb-8 md:grid md:grid-cols-12 md:gap-8'
                 key={id}
               >
-                <dt className='text-base font-medium text-blue-900 md:col-span-5'>
+                <dt className='text-base font-medium text-gray-900 md:col-span-5'>
                   {question}
                 </dt>
                 <dd className='mt-2 md:col-span-7 md:mt-0'>
-                  <p className='text-base text-blue-900'>{answer}</p>
+                  <p className='text-base text-gray-500'>{answer}</p>
                 </dd>
               </div>
             ))}
